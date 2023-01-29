@@ -16,12 +16,12 @@ Projeto de Disciplina Programação e analise de algoritmos
 
 # Install Dependencies
 In the project directory, you can run:
-### `yarn`
+### `yarn install`
 
 # Run Project
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev`
 
 # Add Dependency
 In the project directory, you can run:
