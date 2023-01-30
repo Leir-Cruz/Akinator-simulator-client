@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 interface IContainer {
-  children: JSX.Element;
+  children: JSX.Element[];
   color?: string;
 }
 export const PageContainer = ({ children, color }: IContainer) => {
@@ -16,6 +16,7 @@ export const PageContainer = ({ children, color }: IContainer) => {
         width: '100%',
         backgroundColor: color ? color : '#462255',
         boxSizing: 'border-box',
+        gap: '40px',
         padding: 0,
       }}
     >
