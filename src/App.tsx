@@ -1,5 +1,13 @@
+import './App.css';
+
+import { Container } from './components/Container/Container';
+
 function App() {
-  return <div>batata</div>;
+  return (
+    <Container>
+      <span>batata</span>
+    </Container>
+  );
 }
 
 export default App;
