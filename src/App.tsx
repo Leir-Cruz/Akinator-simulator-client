@@ -1,11 +1,12 @@
 import './App.css';
 
+import { PageButton } from './components/Buttons/PageButton';
 import { PageContainer } from './components/Container/PageContainer';
 
 function App() {
   return (
     <PageContainer>
-      <span>batata</span>
+      <PageButton text="batata"></PageButton>
     </PageContainer>
   );
 }
