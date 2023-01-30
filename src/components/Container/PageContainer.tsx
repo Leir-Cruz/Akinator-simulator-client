@@ -11,6 +11,8 @@ export const PageContainer = ({ children, color }: IContainer) => {
         display: 'flex',
         minHeight: '100vh',
         flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
         width: '100%',
         backgroundColor: color ? color : '#462255',
         boxSizing: 'border-box',
