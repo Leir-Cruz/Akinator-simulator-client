@@ -1,12 +1,12 @@
 import './App.css';
 
-import { Container } from './components/Container/Container';
+import { PageContainer } from './components/Container/PageContainer';
 
 function App() {
   return (
-    <Container>
+    <PageContainer>
       <span>batata</span>
-    </Container>
+    </PageContainer>
   );
 }
 
