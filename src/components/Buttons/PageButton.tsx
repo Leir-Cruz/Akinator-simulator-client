@@ -3,9 +3,10 @@ import { Box, Typography } from '@mui/material';
 interface IPageButton {
   color?: string;
   text: string;
+  onClick?: () => void;
 }
 
-export const PageButton = ({ color, text }: IPageButton) => {
+export const PageButton = ({ color, text, onClick }: IPageButton) => {
   return (
     <Box
       sx={{
@@ -25,6 +26,7 @@ export const PageButton = ({ color, text }: IPageButton) => {
           opacity: 0.8,
         },
       }}
+      onClick={onClick}
     >
       <Typography
         sx={{
