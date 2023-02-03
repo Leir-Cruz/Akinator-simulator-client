@@ -1,11 +1,10 @@
 import { Box } from '@mui/system';
-import { useState } from 'react';
 
 interface IInput {
   placeholder: string;
+  onChange: (event: any) => void;
 }
-export const Input = ({ placeholder }: IInput) => {
-  const [input, setInput] = useState<string>('');
+export const Input = ({ placeholder, onChange }: IInput) => {
   return (
     <Box
       sx={{
@@ -21,6 +20,7 @@ export const Input = ({ placeholder }: IInput) => {
     >
       <input
         placeholder={placeholder}
+        onChange={onChange}
         style={{
           border: 'transparent',
           width: '100%',
