@@ -2,14 +2,16 @@ import { Paper } from '@mui/material';
 
 interface IImageContainer {
   photoUrl: string;
+  width?: string;
+  height?: string;
 }
 
-export const ImageContainer = ({ photoUrl }: IImageContainer) => {
+export const ImageContainer = ({ photoUrl, width, height }: IImageContainer) => {
   return (
     <Paper
       sx={{
-        width: '332px',
-        height: '415px',
+        width: width ? width : '332px',
+        height: height ? height : '415px',
         background: 'transparent',
       }}
       elevation={2}
