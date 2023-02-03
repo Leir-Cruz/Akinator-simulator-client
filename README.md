@@ -23,7 +23,7 @@ In the project directory, you can run:
 # Run Project
 
 In the project directory, you can run:
-
+### `git pull`
 ### `yarn dev`
 
 # Add Dependency
@@ -31,3 +31,12 @@ In the project directory, you can run:
 In the project directory, you can run:
 
 ### `yarn add 'dependecy-name'`
+
+# Code Info
+### components
+
+- PageContainer
+- ImageContainer
+- InputContainer
+- PageButton
+- Input
