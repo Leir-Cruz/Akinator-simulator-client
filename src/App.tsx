@@ -1,12 +1,12 @@
 import './App.css';
 
 import { BrowserRouter } from 'react-router-dom';
-import Routes from './Routes';
 
 import { PageButton } from './components/Buttons/PageButton';
 import { ImageContainer } from './components/Containers/ImageContainer';
 import { InputContainer } from './components/Containers/InputContainer';
 import { PageContainer } from './components/Containers/PageContainer';
+import MainRoutes from './Routes';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           height="400px"
         />
       </PageContainer>
-      <Routes/>
+      <MainRoutes/>
     </BrowserRouter>
   );
 }

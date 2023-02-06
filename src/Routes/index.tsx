@@ -1,12 +1,12 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-const RoutesList = () => {
-    return (
-        <Routes>
-            <Route path='/' element={} />
-        </Routes>
-    )
-}
+const MainRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={} />
+    </Routes>
+  );
+};
 
-export default Routes
+export default MainRoutes;
