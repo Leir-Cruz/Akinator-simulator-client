@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* <GlobalContext.Provider value={{ copy, setCopy }}> */}
-        <MainRoutes/>
+      <MainRoutes />
       {/* </GlobalContext.Provider> */}
     </BrowserRouter>
   );
