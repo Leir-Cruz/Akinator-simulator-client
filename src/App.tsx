@@ -10,14 +10,14 @@ import { PageContainer } from './components/Containers/PageContainer';
 import { GlobalContext } from './contexts/useContext';
 import MainRoutes from './Routes';
 
-const [copy, setCopy] = useState<string>('exemplo de contexto');
+//const [copy, setCopy] = useState<string>('exemplo de contexto');
 
 function App() {
   return (
     <BrowserRouter>
-      <GlobalContext.Provider value={{ copy, setCopy }}>
-        <MainRoutes />
-      </GlobalContext.Provider>
+      {/* <GlobalContext.Provider value={{ copy, setCopy }}> */}
+        <MainRoutes/>
+      {/* </GlobalContext.Provider> */}
     </BrowserRouter>
   );
 }
