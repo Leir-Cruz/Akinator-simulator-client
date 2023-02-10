@@ -1,13 +1,10 @@
 import { createContext, useContext } from 'react';
 
 export type GlobalContent = {
-  copy: string,
-  setCopy: (c: string) => void,
+  copy: string;
+  setCopy: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const GlobalContext = createContext<GlobalContent>({
-  copy: 'Valor Default',
-  setCopy: () => {},
-});
+export const GlobalContext = createContext<GlobalContent | null>(null);
 
 export const useGlobalContext = () => useContext(GlobalContext);

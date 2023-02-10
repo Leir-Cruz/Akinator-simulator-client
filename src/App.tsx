@@ -1,5 +1,6 @@
 import './App.css';
 
+import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { PageButton } from './components/Buttons/PageButton';
@@ -9,7 +10,7 @@ import { PageContainer } from './components/Containers/PageContainer';
 import { GlobalContext } from './components/contexts/useContext';
 import MainRoutes from './Routes';
 
-// const [copy, setCopy] = useState<string>(getCopy('User'))
+const [copy, setCopy] = useState<string>('exemplo de contexto');
 
 function App() {
   return (
