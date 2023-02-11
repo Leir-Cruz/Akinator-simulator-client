@@ -47,6 +47,16 @@ In the project directory, you can run:
 - InputContainer
 - PageButton
 - Input
+- Question
+
+### Pages
+
+- HomePage
+- QuestionPage
+- IsCharacterPage
+- NotFoundPage
+- FoundPage
+- AddCharacterPage
 
 # Extra
 
