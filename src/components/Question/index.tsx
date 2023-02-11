@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, keyframes, Typography } from '@mui/material';
 
 interface IQuestion {
   question: string;
@@ -15,6 +15,11 @@ export const Question = ({
   height,
   fontSize,
 }: IQuestion) => {
+  const componentScaleLoop = keyframes`
+  from { transform: scale(0.8); }
+  to { transform: scale(1); }
+  `;
+
   return (
     <Grid
       container
@@ -27,6 +32,7 @@ export const Question = ({
         alignItems: 'center',
         justifyContent: 'space-around',
         borderRadius: '10px',
+        animation: `${componentScaleLoop} 2s infinite alternate`,
       }}
     >
       <Grid
