@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 import { PageButton } from '../../components/Buttons/PageButton';
 import { ImageContainer } from '../../components/Containers/ImageContainer';
@@ -6,6 +7,7 @@ import { PageContainer } from '../../components/Containers/PageContainer';
 import { Question } from '../../components/Question';
 
 export const QuestionCharacterPage = () => {
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Question question="Seu Personagem é fulano?" questionNumber={1} fontSize="48px" />
@@ -24,7 +26,13 @@ export const QuestionCharacterPage = () => {
           marginBottom: '10px',
         }}
       >
-        <PageButton text="sim" width="250px" height="50px" color="#3BCEAC" />
+        <PageButton
+          text="sim"
+          width="250px"
+          height="50px"
+          color="#3BCEAC"
+          onClick={() => navigate(`/Character`)}
+        />
         <PageButton text="Não" width="250px" height="50px" color="#CE3B3B" />
       </Box>
     </PageContainer>

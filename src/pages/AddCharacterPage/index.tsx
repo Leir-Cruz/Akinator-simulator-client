@@ -1,5 +1,6 @@
 import { styled, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { PageButton } from '../../components/Buttons/PageButton';
 import { InputContainer } from '../../components/Containers/InputContainer';
@@ -7,6 +8,8 @@ import { PageContainer } from '../../components/Containers/PageContainer';
 import { Input } from '../../components/Input/Input';
 
 export const AddCharacterPage = () => {
+  const navigate = useNavigate();
+
   const PageTitle = styled(Typography)(() => ({
     fontSize: '64px',
     width: '80%',
@@ -54,7 +57,7 @@ export const AddCharacterPage = () => {
           fontSize="16px"
         />
       </InputContainer>
-      <PageButton text="Confirmar" width="25%" />
+      <PageButton text="Confirmar" width="25%" onClick={() => navigate('/')} />
     </PageContainer>
   );
 };

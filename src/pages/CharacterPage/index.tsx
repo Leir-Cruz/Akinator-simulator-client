@@ -1,4 +1,5 @@
 import { keyframes, styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 import { PageButton } from '../../components/Buttons/PageButton';
 import { ImageContainer } from '../../components/Containers/ImageContainer';
@@ -9,7 +10,7 @@ interface ICharacterPage {
 }
 
 export const CharacterPage = ({ characterName }: ICharacterPage) => {
-  //from { opacity: 0 }
+  const navigate = useNavigate();
   const textFadeLoop = keyframes`
   from { opacity: 0; transform: scale(0.8); }
   to { opacity: 1; transform: scale(1); }
@@ -34,6 +35,7 @@ export const CharacterPage = ({ characterName }: ICharacterPage) => {
         color="#3BCEAC"
         height="fit-content"
         fontSize="20px"
+        onClick={() => navigate(`/`)}
       />
     </PageContainer>
   );
