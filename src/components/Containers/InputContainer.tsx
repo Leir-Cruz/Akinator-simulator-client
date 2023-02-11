@@ -3,8 +3,11 @@ import { useState } from 'react';
 
 import { Input } from '../Input/Input';
 
-export const InputContainer = () => {
-  const [input, setInput] = useState<string>('');
+interface IInputContainer {
+  children: JSX.Element[];
+}
+
+export const InputContainer = ({ children }: IInputContainer) => {
   return (
     <Box
       sx={{
@@ -16,12 +19,7 @@ export const InputContainer = () => {
         width: 'fit-content',
       }}
     >
-      <Input
-        placeholder="Nome do Personagem"
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-      />
+      {children}
     </Box>
   );
 };

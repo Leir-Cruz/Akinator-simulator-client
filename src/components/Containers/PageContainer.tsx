@@ -12,12 +12,12 @@ export const PageContainer = ({ children, color }: IContainer) => {
         minHeight: '100vh',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         width: '100%',
         backgroundColor: color ? color : '#462255',
         boxSizing: 'border-box',
-        gap: '40px',
-        padding: 0,
+        //gap: '40px',
+        padding: '20px 0',
       }}
     >
       {children}
