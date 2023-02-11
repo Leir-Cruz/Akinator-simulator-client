@@ -2,13 +2,16 @@ import './App.css';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { ContextProvider } from './contexts/useContext';
 import MainRoutes from './Routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <MainRoutes />
-    </BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
+        <MainRoutes />
+      </BrowserRouter>
+    </ContextProvider>
   );
 }
 
