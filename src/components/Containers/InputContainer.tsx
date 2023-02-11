@@ -1,13 +1,11 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
-
-import { Input } from '../Input/Input';
 
 interface IInputContainer {
   children: JSX.Element[];
+  width?: string;
 }
 
-export const InputContainer = ({ children }: IInputContainer) => {
+export const InputContainer = ({ children, width }: IInputContainer) => {
   return (
     <Box
       sx={{
@@ -16,7 +14,7 @@ export const InputContainer = ({ children }: IInputContainer) => {
         alignItems: 'center',
         justifyContent: 'flex-start',
         gap: '10px',
-        width: 'fit-content',
+        width: width ? width : '100%',
       }}
     >
       {children}
