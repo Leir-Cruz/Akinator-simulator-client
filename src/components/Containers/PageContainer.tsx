@@ -17,7 +17,7 @@ export const PageContainer = ({ children, color }: IContainer) => {
         backgroundColor: color ? color : '#462255',
         boxSizing: 'border-box',
         //gap: '40px',
-        padding: '20px 0',
+        padding: '30px 0',
       }}
     >
       {children}
