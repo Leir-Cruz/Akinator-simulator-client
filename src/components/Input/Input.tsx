@@ -5,8 +5,9 @@ interface IInput {
   onChange: (event: any) => void;
   width?: string;
   height?: string;
+  fontSize?: string;
 }
-export const Input = ({ placeholder, onChange, width, height }: IInput) => {
+export const Input = ({ placeholder, onChange, width, height, fontSize }: IInput) => {
   return (
     <Box
       sx={{
@@ -25,6 +26,7 @@ export const Input = ({ placeholder, onChange, width, height }: IInput) => {
         onChange={onChange}
         style={{
           border: 'transparent',
+          fontSize: fontSize ? fontSize : '14px',
           width: '100%',
           height: '100%',
           borderRadius: '5px',

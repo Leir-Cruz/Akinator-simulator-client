@@ -22,7 +22,13 @@ export const NotFoundPage = () => {
       <PageTitle>
         Seu Personagem não está no nosso Banco de Dados, pode nos dizer quem é?
       </PageTitle>
-      <Input placeholder="Nome do Personagem" onChange={(e) => setName(e)} />
+      <Input
+        placeholder="Nome do Personagem"
+        onChange={(e) => setName(e)}
+        width="40%"
+        height="50px"
+        fontSize="16px"
+      />
       <PageButton text="Confirmar" width="25%" />
     </PageContainer>
   );
