@@ -3,10 +3,12 @@ import { Box, Typography } from '@mui/material';
 interface IPageButton {
   color?: string;
   text: string;
+  width?: string;
+  height?: string;
   onClick?: () => void;
 }
 
-export const PageButton = ({ color, text, onClick }: IPageButton) => {
+export const PageButton = ({ color, text, onClick, width, height }: IPageButton) => {
   return (
     <Box
       sx={{
@@ -15,8 +17,8 @@ export const PageButton = ({ color, text, onClick }: IPageButton) => {
         alignItems: 'center',
         justifyContent: 'center',
         gap: '10px',
-        width: 'fit-content',
-        height: '100px',
+        width: width ? width : 'fit-content',
+        height: height ? height : '100px',
         background: color ? color : '#FFD23F',
         borderRadius: '10px',
         padding: '8px 12px',
