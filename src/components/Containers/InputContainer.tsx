@@ -1,7 +1,4 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
-
-import { Input } from '../Input/Input';
 
 interface IInputContainer {
   children: JSX.Element[];

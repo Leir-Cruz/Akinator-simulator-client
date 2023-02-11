@@ -1,4 +1,4 @@
-import { keyframes, styled, Typography } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 import { useState } from 'react';
 
 import { PageButton } from '../../components/Buttons/PageButton';
