@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { AddCharacterPage } from '../pages/AddCharacterPage';
 import { CharacterPage } from '../pages/CharacterPage';
 import { HomePage } from '../pages/HomePage';
 import { NotFoundPage } from '../pages/NotFoundPage';
@@ -14,6 +15,7 @@ const MainRoutes = () => {
       <Route path="/questionCharacter" element={<QuestionCharacterPage />} />
       <Route path="/Character" element={<CharacterPage />} />
       <Route path="/NotFound" element={<NotFoundPage />} />
+      <Route path="/AddCharacter" element={<AddCharacterPage />} />
     </Routes>
   );
 };
