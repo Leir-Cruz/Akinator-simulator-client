@@ -27,6 +27,7 @@ export interface GlobalContext {
   getNextQuestion(): Promise<string>;
   answerQuestion(label: string, choice: choice): Promise<result>;
   addCharacter(name: string, values: choice[]): Promise<AddCharacter>;
+  translateLabel(label: string): string;
   execution?: number;
   gameStatus?: AkinatorChoice[];
 }
@@ -37,6 +38,7 @@ const defaultContext: GlobalContext = {
   getNextQuestion: () => Promise.resolve('exemple'),
   answerQuestion: () => Promise.resolve(null),
   addCharacter: () => Promise.resolve({ name: 'test', values: [] }),
+  translateLabel: () => 'exemplo',
 };
 
 const GlobalContext = createContext<GlobalContext>(defaultContext);
@@ -70,6 +72,24 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
     return response.data.result;
   };
 
+  const translationTable = {
+    Died : 'O seu personagem morreu?',
+    Ded : 'O seu personagem está morto?',
+    Male : 'O seu personagem é um homem?',
+    Blonde: 'O seu personagem é loiro?',
+    Fight : 'O seu personagem luta?',
+    Wall : 'O seu personagem esteve na muralha?',
+    Child : 'O seu personagem é uma criança?',
+    Wild : 'O seu personagem vive depois da muralha?',
+    King : 'O seu personagem é um Rei?',
+    Love : 'O seu personagem amou alguém?',
+    Honor : 'O seu personagem tinha honra?' 
+  }
+
+  type ObjectKey = keyof typeof translationTable;
+
+  const translateLabel = (label: string): string => translationTable[label as ObjectKey];
+
   // ordem de values:
   // eslint-disable-next-line no-irregular-whitespace
   // ['Died','Dead','Male','Blonde','Fight','Wall','Child','Murder','Wild','King','Love','Honor']
@@ -91,6 +111,7 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
     getNextQuestion: getNextQuestion,
     answerQuestion: answerQuestion,
     addCharacter: addCharacter,
+    translateLabel: translateLabel,
     execution: execution,
     gameStatus: gameState,
   };
