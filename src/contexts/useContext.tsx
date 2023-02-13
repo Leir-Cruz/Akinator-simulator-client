@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import { api } from '../services/api';
 
@@ -22,12 +22,28 @@ interface AddCharacter {
   name: string;
 }
 
+export const translationTable: { [key: string]: string } = {
+  Died: 'O seu personagem morreu?',
+  Murder: 'O seu personagem já matou alguem?',
+  Dead: 'O seu personagem está morto?',
+  Male: 'O seu personagem é um homem?',
+  Blonde: 'O seu personagem é loiro?',
+  Fight: 'O seu personagem luta?',
+  Wall: 'O seu personagem esteve na muralha?',
+  Child: 'O seu personagem é uma criança?',
+  Wild: 'O seu personagem vive depois da muralha?',
+  King: 'O seu personagem é um Rei?',
+  Love: 'O seu personagem amou alguém?',
+  Honor: 'O seu personagem tinha honra?',
+};
+
 export interface GlobalContext {
   startNewGame(): Promise<string>;
   getNextQuestion(): Promise<string>;
   answerQuestion(label: string, choice: choice): Promise<result>;
   addCharacter(name: string, values: choice[]): Promise<AddCharacter>;
   translateLabel(label: string): string;
+  getImage(): string;
   execution?: number;
   gameStatus?: AkinatorChoice[];
 }
@@ -39,6 +55,8 @@ const defaultContext: GlobalContext = {
   answerQuestion: () => Promise.resolve(null),
   addCharacter: () => Promise.resolve({ name: 'test', values: [] }),
   translateLabel: () => 'exemplo',
+  getImage: () =>
+    'https://cdn.discordapp.com/attachments/750164310315106366/1074526473614020638/latest.png',
 };
 
 const GlobalContext = createContext<GlobalContext>(defaultContext);
@@ -55,38 +73,46 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
     return question.data.result;
   };
 
-  const getNextQuestion = async () => {
-    if (!execution) throw new Error();
+  const arrayIncludes = (
+    array: AkinatorChoice[],
+    label: string,
+  ): AkinatorChoice | undefined => {
+    for (const i in array) if (array[i].label === label) return array[i];
+  };
+
+  const getNextQuestion = async (): Promise<string> => {
+    if (!execution) {
+      setTimeout('', 1000);
+      return getNextQuestion();
+    }
 
     const response = await api.get(`/questions/${execution}`);
+
+    const alreadyAsked = arrayIncludes(gameState, response.data.result);
+
+    if (alreadyAsked) {
+      return answerQuestion(response.data.result, alreadyAsked.choice).then(() =>
+        getNextQuestion(),
+      );
+    }
 
     return response.data.result;
   };
 
   const answerQuestion = async (label: string, choice: choice): Promise<result> => {
-    const currentQuestion = gameState.pop();
-    if (label !== currentQuestion?.label) {
-      throw Error;
-    }
-
     const response = await api.post(`/questions/${execution}`, { answer: choice });
     const answeredQuestion: AkinatorChoice = { label, choice };
     setGameState([...gameState, answeredQuestion]);
     return response.data.result;
   };
 
-  const translationTable = {
-    Died: 'O seu personagem morreu?',
-    Ded: 'O seu personagem está morto?',
-    Male: 'O seu personagem é um homem?',
-    Blonde: 'O seu personagem é loiro?',
-    Fight: 'O seu personagem luta?',
-    Wall: 'O seu personagem esteve na muralha?',
-    Child: 'O seu personagem é uma criança?',
-    Wild: 'O seu personagem vive depois da muralha?',
-    King: 'O seu personagem é um Rei?',
-    Love: 'O seu personagem amou alguém?',
-    Honor: 'O seu personagem tinha honra?',
+  const getImage = () => {
+    const images = [
+      'https://media.discordapp.net/attachments/750164310315106366/1074526473614020638/latest.png?width=640&height=678',
+      'https://cdn.discordapp.com/attachments/750164310315106366/1074526566517850112/latest.png',
+      'https://cdn.discordapp.com/attachments/750164310315106366/1074526733828636724/aladdin-genio-clipart-001.png',
+    ];
+    return images[Math.floor(Math.random() * images.length)];
   };
 
   type ObjectKey = keyof typeof translationTable;
@@ -117,6 +143,7 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
     translateLabel: translateLabel,
     execution: execution,
     gameStatus: gameState,
+    getImage: getImage,
   };
 
   return <GlobalContext.Provider value={context}>{children}</GlobalContext.Provider>;

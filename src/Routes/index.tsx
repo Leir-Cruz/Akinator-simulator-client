@@ -12,10 +12,10 @@ const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/question" element={<QuestionPage />} />
-      <Route path="/questionCharacter" element={<QuestionCharacterPage />} />
-      <Route path="/Character" element={<CharacterPage />} />
+      <Route path={`/questionCharacter/:character`} element={<QuestionCharacterPage />} />
+      <Route path="/Character/:character" element={<CharacterPage />} />
       <Route path="/NotFound" element={<NotFoundPage />} />
-      <Route path="/AddCharacter" element={<AddCharacterPage />} />
+      <Route path="/AddCharacter/:character" element={<AddCharacterPage />} />
     </Routes>
   );
 };

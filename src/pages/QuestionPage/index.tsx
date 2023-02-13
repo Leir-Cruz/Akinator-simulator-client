@@ -1,30 +1,53 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PageButton } from '../../components/Buttons/PageButton';
+import { ImageContainer } from '../../components/Containers/ImageContainer';
 import { PageContainer } from '../../components/Containers/PageContainer';
 import { Question } from '../../components/Question';
 import { choice, useGlobalContext } from '../../contexts/useContext';
 
 export const QuestionPage = () => {
-  const { startNewGame, answerQuestion, translateLabel } = useGlobalContext();
+  const navigate = useNavigate();
+  const { startNewGame, getNextQuestion, answerQuestion, translateLabel, getImage } =
+    useGlobalContext();
   const [title, setTitle] = useState<string>('');
 
+  const [image, setImage] = useState<string>('');
+
   const postAnswer = async (res: choice) => {
-    await answerQuestion(title, res);
+    console.log('answer' + String(res));
+    const result = await answerQuestion(title, res);
+    if (!result) {
+      fetchNewQuestion();
+      return;
+    }
+    navigate(`/questionCharacter/${result}`);
   };
 
-  const fetchNextQuestion = async () => {
+  const StartGame = async () => {
     const response = await startNewGame();
+    console.log('jogo iniciado');
+    setImage(getImage());
     setTitle(response);
   };
+
+  const fetchNewQuestion = async () => {
+    const response = await getNextQuestion();
+    if (response === null) navigate('/NotFound');
+    setImage(getImage());
+    setTitle(response);
+  };
+
   useEffect(() => {
-    fetchNextQuestion();
+    StartGame();
   }, []);
 
   return (
     <PageContainer>
       <Question question={translateLabel(title)} questionNumber={1} fontSize="48px" />
+      <ImageContainer photoUrl={image} width="300px" height="400px" />
       <Box
         sx={{
           display: 'flex',
@@ -41,11 +64,7 @@ export const QuestionPage = () => {
           height="50px"
           color="#3BCEAC"
           onClick={() => {
-            // postAnswer(1);
-            const ans: choice = 1;
-            const a = answerQuestion(title, ans);
-            console.log('fefgefef');
-            console.log(a);
+            postAnswer(1);
           }}
         />
         <PageButton
