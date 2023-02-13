@@ -1,69 +1,91 @@
 import { Box } from '@mui/system';
-import { useState } from 'react';
 
 interface IInput {
-  placeholder: string;
-  onChange: (event: any) => void;
   width?: string;
   height?: string;
   fontSize?: string;
+  label: string;
+  display: string;
+  setValue: (label: string, value: number) => void;
 }
-export const Select = ({ placeholder, width, height, fontSize }: IInput) => {
-  const [service, setService] = useState([false, false, false]);
-
-  const handleOnChange = (position) => {
-    const updatedCheckedState = service.map((item, index) =>
-      index === position ? true : false,
-    );
-
-    setService(updatedCheckedState);
+export const Select = ({ label, display, setValue, width, height, fontSize }: IInput) => {
+  const handleOnChange = (e: any) => {
+    setValue(label, e.target.value);
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff',
-        width: width ? width : '200px',
-        height: height ? height : '40px',
-        borderRadius: '5px',
-        border: '2px solid #868E96',
-      }}
-    >
-      <div placeholder={placeholder}>
-        <input
-          type="checkbox"
-          placeholder={placeholder}
-          checked={service[0]}
-          onChange={() => handleOnChange(0)}
+    <>
+      <div style={{ color: '#fff' }}>
+        <label
           style={{
             border: 'transparent',
-            fontSize: fontSize ? fontSize : '14px',
-            width: '100%',
+            fontSize: fontSize ? fontSize : '30px',
+            width: '100px',
             height: '100%',
             borderRadius: '5px',
             padding: '0 4px',
             outline: 'none',
           }}
-        />
-        <input
-          type="checkbox"
-          placeholder={placeholder}
-          checked={service[0]}
-          onChange={() => handleOnChange(0)}
-          style={{
-            border: 'transparent',
-            fontSize: fontSize ? fontSize : '14px',
-            width: '100%',
-            height: '100%',
-            borderRadius: '5px',
-            padding: '0 4px',
-            outline: 'none',
-          }}
-        />
+        >
+          {display}
+        </label>
+        <div onChange={handleOnChange} style={{ color: '#fff' }}>
+          <label
+            style={{
+              border: 'transparent',
+              fontSize: fontSize ? fontSize : '14px',
+              width: '100%',
+              height: '100%',
+              borderRadius: '5px',
+              padding: '0 4px',
+              outline: 'none',
+            }}
+          >
+            Sim
+          </label>
+          <input
+            type="radio"
+            value={1}
+            name={label}
+            style={{
+              border: 'transparent',
+              fontSize: fontSize ? fontSize : '14px',
+              width: '100%',
+              height: '100%',
+              borderRadius: '5px',
+              padding: '0 4px',
+              outline: 'none',
+            }}
+          />
+          <label
+            style={{
+              border: 'transparent',
+              fontSize: fontSize ? fontSize : '14px',
+              width: '100%',
+              height: '100%',
+              borderRadius: '5px',
+              padding: '0 4px',
+              outline: 'none',
+            }}
+          >
+            Não
+          </label>
+          <input
+            type="radio"
+            value={-1}
+            name={label}
+            style={{
+              border: 'transparent',
+              fontSize: fontSize ? fontSize : '14px',
+              width: '100%',
+              height: '100%',
+              borderRadius: '5px',
+              padding: '0 4px',
+              outline: 'none',
+            }}
+          />
+        </div>
       </div>
-    </Box>
+    </>
   );
 };

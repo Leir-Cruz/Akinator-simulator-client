@@ -37,7 +37,15 @@ export const QuestionCharacterPage = () => {
           color="#3BCEAC"
           onClick={() => navigate(`/Character/${character}`)}
         />
-        <PageButton text="Não" width="250px" height="50px" color="#CE3B3B" />
+        <PageButton
+          text="Não"
+          width="250px"
+          height="50px"
+          color="#CE3B3B"
+          onClick={() => {
+            navigate('/notFound');
+          }}
+        />
       </Box>
     </PageContainer>
   );

@@ -24,13 +24,13 @@ interface AddCharacter {
 
 export const translationTable: { [key: string]: string } = {
   Died: 'O seu personagem morreu?',
-  Murder: 'O seu personagem já matou alguem?',
   Dead: 'O seu personagem está morto?',
   Male: 'O seu personagem é um homem?',
   Blonde: 'O seu personagem é loiro?',
   Fight: 'O seu personagem luta?',
   Wall: 'O seu personagem esteve na muralha?',
   Child: 'O seu personagem é uma criança?',
+  Murder: 'O seu personagem já matou alguem?',
   Wild: 'O seu personagem vive depois da muralha?',
   King: 'O seu personagem é um Rei?',
   Love: 'O seu personagem amou alguém?',
