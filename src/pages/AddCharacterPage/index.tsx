@@ -31,7 +31,7 @@ export const AddCharacterPage = () => {
   const [payload, setPayload] = useState(payloadBase);
 
   const setValue = (label: string, value: number) => {
-    setPayload((payload) => {
+    setPayload((payload: any) => {
       payload[label] = value;
       return payload;
     });

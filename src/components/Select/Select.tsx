@@ -16,7 +16,7 @@ export const Select = ({ label, display, setValue, width, height, fontSize }: II
   return (
     <>
       <div style={{ color: '#fff' }}>
-        <label
+        <span
           style={{
             border: 'transparent',
             fontSize: fontSize ? fontSize : '30px',
@@ -28,9 +28,9 @@ export const Select = ({ label, display, setValue, width, height, fontSize }: II
           }}
         >
           {display}
-        </label>
+        </span>
         <div onChange={handleOnChange} style={{ color: '#fff' }}>
-          <label
+          <span
             style={{
               border: 'transparent',
               fontSize: fontSize ? fontSize : '14px',
@@ -42,7 +42,7 @@ export const Select = ({ label, display, setValue, width, height, fontSize }: II
             }}
           >
             Sim
-          </label>
+          </span>
           <input
             type="radio"
             value={1}
@@ -57,7 +57,7 @@ export const Select = ({ label, display, setValue, width, height, fontSize }: II
               outline: 'none',
             }}
           />
-          <label
+          <span
             style={{
               border: 'transparent',
               fontSize: fontSize ? fontSize : '14px',
@@ -69,7 +69,7 @@ export const Select = ({ label, display, setValue, width, height, fontSize }: II
             }}
           >
             Não
-          </label>
+          </span>
           <input
             type="radio"
             value={-1}
