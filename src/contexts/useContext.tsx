@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import { api } from '../services/api';
 
@@ -50,10 +50,28 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
     setExecution(response.data.requisition_id);
   };
 
-  const getNextQuestion = async () => {
-    if (!execution) throw new Error();
+  const arrayIncludes = (
+    array: AkinatorChoice[],
+    label: string,
+  ): AkinatorChoice | undefined => {
+    for (const i in array) if (array[i].label === label) return array[i];
+  };
+
+  const getNextQuestion = async (): Promise<string> => {
+    if (!execution) {
+      setTimeout('', 1000);
+      return getNextQuestion();
+    }
 
     const response = await api.get(`/questions/${execution}`);
+
+    const alreadyAsked = arrayIncludes(gameState, response.data.result);
+
+    if (alreadyAsked) {
+      return answerQuestion(response.data.result, alreadyAsked.choice).then(() =>
+        getNextQuestion(),
+      );
+    }
 
     return response.data.result;
   };
