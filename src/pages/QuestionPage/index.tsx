@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PageButton } from '../../components/Buttons/PageButton';
 import { PageContainer } from '../../components/Containers/PageContainer';
@@ -7,6 +8,7 @@ import { Question } from '../../components/Question';
 import { choice, useGlobalContext } from '../../contexts/useContext';
 
 export const QuestionPage = () => {
+  const navigate = useNavigate();
   const { startNewGame, getNextQuestion, answerQuestion } = useGlobalContext();
   const [title, setTitle] = useState<string>('');
 
@@ -19,6 +21,7 @@ export const QuestionPage = () => {
   const fetchNextQuestion = async () => {
     await startNewGame();
     const response = await getNextQuestion();
+    if (response === null) navigate('/NotFound');
     setTitle(response);
   };
 
