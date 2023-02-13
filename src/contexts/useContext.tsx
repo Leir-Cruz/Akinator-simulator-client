@@ -23,7 +23,7 @@ interface AddCharacter {
 }
 
 export interface GlobalContext {
-  startNewGame(): void;
+  startNewGame(): Promise<string>;
   getNextQuestion(): Promise<string>;
   answerQuestion(label: string, choice: choice): Promise<result>;
   addCharacter(name: string, values: choice[]): Promise<AddCharacter>;
@@ -34,7 +34,7 @@ export interface GlobalContext {
 
 const defaultContext: GlobalContext = {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  startNewGame: () => {},
+  startNewGame: () => Promise.resolve('exemple'),
   getNextQuestion: () => Promise.resolve('exemple'),
   answerQuestion: () => Promise.resolve(null),
   addCharacter: () => Promise.resolve({ name: 'test', values: [] }),
@@ -50,6 +50,9 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
   const startNewGame = async () => {
     const response = await api.post('/executions');
     setExecution(response.data.requisition_id);
+
+    const question = await api.get(`/questions/${response.data.requisition_id}`);
+    return question.data.result;
   };
 
   const getNextQuestion = async () => {
@@ -66,25 +69,25 @@ export const ContextProvider = ({ children }: { children: React.ReactElement }) 
       throw Error;
     }
 
-    const response = await api.post(`/questions/${choice}`, { answer: choice });
+    const response = await api.post(`/questions/${execution}`, { answer: choice });
     const answeredQuestion: AkinatorChoice = { label, choice };
     setGameState([...gameState, answeredQuestion]);
     return response.data.result;
   };
 
   const translationTable = {
-    Died : 'O seu personagem morreu?',
-    Ded : 'O seu personagem está morto?',
-    Male : 'O seu personagem é um homem?',
+    Died: 'O seu personagem morreu?',
+    Ded: 'O seu personagem está morto?',
+    Male: 'O seu personagem é um homem?',
     Blonde: 'O seu personagem é loiro?',
-    Fight : 'O seu personagem luta?',
-    Wall : 'O seu personagem esteve na muralha?',
-    Child : 'O seu personagem é uma criança?',
-    Wild : 'O seu personagem vive depois da muralha?',
-    King : 'O seu personagem é um Rei?',
-    Love : 'O seu personagem amou alguém?',
-    Honor : 'O seu personagem tinha honra?' 
-  }
+    Fight: 'O seu personagem luta?',
+    Wall: 'O seu personagem esteve na muralha?',
+    Child: 'O seu personagem é uma criança?',
+    Wild: 'O seu personagem vive depois da muralha?',
+    King: 'O seu personagem é um Rei?',
+    Love: 'O seu personagem amou alguém?',
+    Honor: 'O seu personagem tinha honra?',
+  };
 
   type ObjectKey = keyof typeof translationTable;
 

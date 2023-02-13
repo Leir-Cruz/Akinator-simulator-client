@@ -7,28 +7,24 @@ import { Question } from '../../components/Question';
 import { choice, useGlobalContext } from '../../contexts/useContext';
 
 export const QuestionPage = () => {
-  const { startNewGame, getNextQuestion, answerQuestion } = useGlobalContext();
+  const { startNewGame, answerQuestion, translateLabel } = useGlobalContext();
   const [title, setTitle] = useState<string>('');
 
   const postAnswer = async (res: choice) => {
-    console.log('Teste');
-    console.log(res);
     await answerQuestion(title, res);
   };
 
   const fetchNextQuestion = async () => {
-    await startNewGame();
-    const response = await getNextQuestion();
+    const response = await startNewGame();
     setTitle(response);
   };
-
   useEffect(() => {
     fetchNextQuestion();
   }, []);
 
   return (
     <PageContainer>
-      <Question question={title} questionNumber={1} fontSize="48px" />
+      <Question question={translateLabel(title)} questionNumber={1} fontSize="48px" />
       <Box
         sx={{
           display: 'flex',
@@ -45,7 +41,11 @@ export const QuestionPage = () => {
           height="50px"
           color="#3BCEAC"
           onClick={() => {
-            postAnswer(1);
+            // postAnswer(1);
+            const ans: choice = 1;
+            const a = answerQuestion(title, ans);
+            console.log('fefgefef');
+            console.log(a);
           }}
         />
         <PageButton
