@@ -13,7 +13,7 @@ export const QuestionPage = () => {
   const { startNewGame, getNextQuestion, answerQuestion, translateLabel, getImage } =
     useGlobalContext();
   const [title, setTitle] = useState<string>('');
-
+  const [questionNumber, setQuesttionNumber] = useState<number>(1);
   const [image, setImage] = useState<string>('');
 
   const postAnswer = async (res: choice) => {
@@ -38,6 +38,7 @@ export const QuestionPage = () => {
     if (response === null) navigate('/NotFound');
     setImage(getImage());
     setTitle(response);
+    setQuesttionNumber(questionNumber + 1);
   };
 
   useEffect(() => {
@@ -46,7 +47,11 @@ export const QuestionPage = () => {
 
   return (
     <PageContainer>
-      <Question question={translateLabel(title)} questionNumber={1} fontSize="48px" />
+      <Question
+        question={translateLabel(title)}
+        questionNumber={questionNumber}
+        fontSize="48px"
+      />
       <ImageContainer photoUrl={image} width="300px" height="400px" />
       <Box
         sx={{
