@@ -56,7 +56,14 @@ export const AddCharacterPage = () => {
           <Select key={i} label={l} display={translationTable[l]} setValue={setValue} />
         ))}
       </div>
-      <PageButton text="Confirmar" width="25%" onClick={handleSubmit} />
+      <PageButton
+        text="Confirmar"
+        color="#3BCEAC"
+        width="20%"
+        height="76px"
+        fontSize="30px"
+        onClick={handleSubmit}
+      />
     </PageContainer>
   );
 };
